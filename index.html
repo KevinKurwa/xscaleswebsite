@@ -27,16 +27,80 @@
         h3{font-size:2rem}
         p{margin-bottom:20px;color:var(--text-muted);font-size:1.1rem;line-height:1.8}
         .text-gradient{background:linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        
+        /* Slim Sticky Announcement Banner Styles */
+        .announcement-banner {
+            background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 100%);
+            color: white;
+            padding: 6px 0;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+        .announcement-banner.hidden {
+            transform: translateY(-100%);
+        }
+        .announcement-banner .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .announcement-banner i {
+            font-size: 0.8rem;
+        }
+        .close-banner {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-left: 15px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            line-height: 1;
+            padding: 2px 5px;
+        }
+        .close-banner:hover {
+            opacity: 1;
+        }
+        
         @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
         @keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
         .fade-in{animation:fadeIn 0.8s ease forwards}
         .fade-in-up{animation:fadeInUp 0.8s ease forwards}
         .delay-1{animation-delay:0.1s}.delay-2{animation-delay:0.2s}.delay-3{animation-delay:0.3s}.delay-4{animation-delay:0.4s}.delay-5{animation-delay:0.5s}
-        header{position:fixed;top:0;left:0;width:100%;background:rgba(0,0,0,0.95);backdrop-filter:blur(10px);z-index:1000;padding:20px 0;border-bottom:1px solid rgba(255,255,255,0.05);animation:fadeIn 0.6s ease forwards}
+        
+        /* Header adjusted to account for banner */
+        body.has-banner header {
+            top: 28px; /* Height of the slim banner */
+        }
+        
+        header{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            background:rgba(0,0,0,0.95);
+            backdrop-filter:blur(10px);
+            z-index:1000;
+            padding:15px 0;
+            border-bottom:1px solid rgba(255,255,255,0.05);
+            animation:fadeIn 0.6s ease forwards;
+            transition: top 0.3s ease;
+        }
         .header-content{display:flex;justify-content:space-between;align-items:center}
-        .logo{font-size:2rem;font-weight:900;background:linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .logo{font-size:1.8rem;font-weight:900;background:linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
         nav ul{display:flex;gap:40px}
-        nav a{font-weight:600;font-size:1rem;color:var(--text-muted)}
+        nav a{font-weight:600;font-size:0.95rem;color:var(--text-muted)}
         nav a:hover{color:var(--text-light)}
         .menu-toggle{display:none;font-size:1.5rem;cursor:pointer;color:var(--text-light)}
         .hero{padding:180px 0 120px;text-align:center;opacity:1;transform:none}
@@ -116,6 +180,16 @@
             h2{font-size:2.2rem}
             section{padding:80px 0}
             .hero{padding:140px 0 80px}
+            .announcement-banner {
+                font-size: 0.75rem;
+                padding: 5px 0;
+            }
+            .announcement-banner i {
+                font-size: 0.7rem;
+            }
+            body.has-banner header {
+                top: 22px; /* Adjusted for mobile */
+            }
             .impact-grid,.services-grid,.results-grid,.process-steps,.footer-content{grid-template-columns:1fr}
             .comparison-content{flex-direction:column;gap:40px}
             .discord-handle h3{font-size:2.2rem}
@@ -127,10 +201,27 @@
             .btn{padding:14px 30px;font-size:1rem}
             .comparison-stat{font-size:3rem}
             .impact-number{font-size:1.6rem}
+            .announcement-banner {
+                font-size: 0.7rem;
+                padding: 4px 0;
+            }
+            body.has-banner header {
+                top: 20px; /* Adjusted for small mobile */
+            }
         }
     </style>
 </head>
 <body oncontextmenu="return false" onkeydown="if(event.ctrlKey && (event.keyCode==83||event.keyCode==85)) return false">
+    <!-- Slim Sticky Announcement Banner -->
+    <div class="announcement-banner" id="announcementBanner">
+        <div class="container">
+            <i class="fas fa-bolt"></i>
+            <span><strong>First Month 50% OFF!</strong> Limited Time Offer</span>
+            <i class="fas fa-bolt"></i>
+            <button class="close-banner" id="closeBanner" aria-label="Close banner">×</button>
+        </div>
+    </div>
+
     <header>
         <div class="container header-content">
             <a href="#" class="logo">XScales</a>
@@ -152,8 +243,8 @@
     <section id="home" class="hero">
         <div class="container hero-content">
             <div class="tagline fade-in">✨ Introducing XScales</div>
-            <h1>MARKETING EXPERTS<br><span class="text-gradient">SCALABLE SALES & REAL GROWTH</span></h1>
-            <p class="hero-subtitle">Specialized marketing services for digital brands: sales strategy, community growth, web development, and brand scaling solutions.</p>
+            <h1>WE HANDLE YOUR SOCIAL MEDIA<br><span class="text-gradient">YOU FOCUS ON YOUR BUSINESS</span></h1>
+            <p class="hero-subtitle">We take over your social media management completely. No need to worry about promotion - we handle everything so you can focus on what matters most: growing your business.</p>
             <a href="#contact" class="btn">Start Scaling Now →</a>
         </div>
     </section>
@@ -209,22 +300,22 @@
                     <div class="service-icon">
                         <i class="fas fa-rocket"></i>
                     </div>
-                    <h3>Advertising Management</h3>
-                    <p>Strategic ad campaigns across Meta, Google, and other platforms to maximize ROI and brand visibility.</p>
+                    <h3>Social Media Takeover</h3>
+                    <p>We completely manage your social media presence across all platforms - posting, engaging, and promoting so you don't have to lift a finger.</p>
                 </div>
                 <div class="service-item delay-2">
                     <div class="service-icon">
                         <i class="fab fa-discord"></i>
                     </div>
-                    <h3>Community Building</h3>
-                    <p>Grow and engage your Discord community with proven strategies that increase member retention and drive organic growth.</p>
+                    <h3>Community Management</h3>
+                    <p>We handle all Discord community management, promotions, and engagement so you can focus on creating value instead of worrying about promotion.</p>
                 </div>
                 <div class="service-item delay-3">
                     <div class="service-icon">
                         <i class="fas fa-paint-brush"></i>
                     </div>
                     <h3>Web Development</h3>
-                    <p>Custom websites and eCommerce platforms built to impress visitors and convert them into customers.</p>
+                    <p>Custom websites and eCommerce platforms built to convert visitors into customers while we handle all the technical details.</p>
                 </div>
             </div>
         </div>
@@ -238,8 +329,8 @@
                     <div class="result-icon">
                         <i class="fab fa-discord"></i>
                     </div>
-                    <h3>Discord Community Growth</h3>
-                    <p>Strategic community management and engagement campaigns that transformed small Discord servers into thriving communities.</p>
+                    <h3>Worry-Free Community Growth</h3>
+                    <p>We took over complete Discord management for clients, transforming small servers into thriving communities while they focused on their core business.</p>
                     <div class="result-stats">
                         <div class="result-stat-item">
                             <div class="result-stat-number">+185%</div>
@@ -256,8 +347,8 @@
                     <div class="result-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3>Revenue Acceleration</h3>
-                    <p>Implemented targeted sales strategies and funnel optimization that significantly increased conversion rates.</p>
+                    <h3>Revenue While You Relax</h3>
+                    <p>Implemented complete social media takeover strategies that increased conversions while clients enjoyed more free time and less stress.</p>
                     <div class="result-stats">
                         <div class="result-stat-item">
                             <div class="result-stat-number">+140%</div>
@@ -275,7 +366,7 @@
                         <i class="fas fa-money-bill-wave"></i>
                     </div>
                     <h3>Exceptional Returns</h3>
-                    <p>Delivered outstanding ROI through strategic investments in growth marketing and digital transformation.</p>
+                    <p>Delivered outstanding ROI through strategic social media management that freed up client time while growing their business.</p>
                     <div class="result-stats">
                         <div class="result-stat-item">
                             <div class="result-stat-number">2.8x</div>
@@ -326,7 +417,7 @@
                     <i class="fab fa-discord"></i>
                 </div>
                 <h2>Ready to <span class="text-gradient">Scale?</span></h2>
-                <p>For the fastest response and direct communication, reach out to me on Discord.</p>
+                <p>Stop worrying about social media and promotion. Let us handle everything while you focus on growing your business. Get 50% OFF your first month!</p>
                 
                 <div class="discord-handle">
                     <h3>@6s3z</h3>
@@ -335,11 +426,11 @@
                 
                 <p class="contact-note">
                     <i class="fas fa-info-circle"></i>
-                    Send me a friend request or direct message on Discord to discuss how we can scale your business together.
+                    Send me a friend request or direct message on Discord to discuss how we can take over your social media and scale your business.
                 </p>
                 
                 <a href="https://discord.com" target="_blank" class="btn">
-                    <i class="fab fa-discord"></i> Open Discord
+                    <i class="fab fa-discord"></i> Contact Me Today :)
                 </a>
             </div>
         </div>
@@ -350,7 +441,7 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>XScales</h3>
-                    <p>Transforming businesses through strategic sales scaling, enhanced visibility, and exceptional digital experiences.</p>
+                    <p>We handle your social media so you can focus on your business. No more promotion worries - just growth.</p>
                 </div>
                 <div class="footer-column">
                     <h3>Quick Links</h3>
@@ -366,6 +457,7 @@
                     <h3>Contact</h3>
                     <ul class="footer-links">
                         <li><i class="fab fa-discord"></i> Discord: @6s3z</li>
+                        <li><i class="fas fa-tag"></i>Contact me Today :)</li>
                     </ul>
                 </div>
             </div>
@@ -379,6 +471,25 @@
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('currentYear').textContent = new Date().getFullYear();
             
+            // Add class to body when banner is present
+            document.body.classList.add('has-banner');
+            
+            // Announcement Banner functionality
+            const announcementBanner = document.getElementById('announcementBanner');
+            const closeBanner = document.getElementById('closeBanner');
+            
+            if (closeBanner) {
+                closeBanner.addEventListener('click', function() {
+                    announcementBanner.classList.add('hidden');
+                    setTimeout(() => {
+                        announcementBanner.style.display = 'none';
+                    }, 300);
+                    document.body.classList.remove('has-banner');
+                    // Reset header position when banner is closed
+                    document.querySelector('header').style.top = '0';
+                });
+            }
+            
             const menuToggle = document.querySelector('.menu-toggle');
             const navMenu = document.querySelector('nav ul');
             
@@ -387,7 +498,7 @@
                     navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
                     navMenu.style.flexDirection = 'column';
                     navMenu.style.position = 'absolute';
-                    navMenu.style.top = '70px';
+                    navMenu.style.top = '60px';
                     navMenu.style.right = '20px';
                     navMenu.style.backgroundColor = 'rgba(20, 20, 20, 0.95)';
                     navMenu.style.padding = '20px';
@@ -409,7 +520,7 @@
                     
                     if(targetElement) {
                         window.scrollTo({
-                            top: targetElement.offsetTop - 80,
+                            top: targetElement.offsetTop - 100,
                             behavior: 'smooth'
                         });
                         
