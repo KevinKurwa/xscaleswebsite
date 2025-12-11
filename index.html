@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XScales | Marketing Experts & Scalable Sales</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%23ff1744%22>⚡</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%23ff1744%22>⚡</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #ff1744;
+            --dark-red: #d50000;
+            --black: #000000;
+            --text-light: #ffffff;
+            --text-muted: #aaaaaa;
+            --text-dim: #888888;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background-color: var(--black);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 100%);
+            color: white;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 23, 68, 0.4);
+        }
+
+        section {
+            padding: 120px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        h2 {
+            font-size: 3.2rem;
+            margin-bottom: 40px;
+        }
+
+        h3 {
+            font-size: 2rem;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        nav a:hover {
+            color: var(--text-light);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            padding: 180px 0 120px;
+            text-align: center;
+            opacity: 1;
+            transform: none;
+        }
+
+        .tagline {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(255, 23, 68, 0.1);
+            color: var(--primary-red);
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .hero h1 {
+            margin-bottom: 30px;
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 50px;
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.4s;
+            opacity: 0;
+        }
+
+        .hero .btn {
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.6s;
+            opacity: 0;
+        }
+
+        /* ===== IMPACT SECTION (UPDATED) ===== */
+        .impact-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .impact-section h2 {
+            margin-bottom: 60px;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .impact-item {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .impact-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* SMALLER NUMBERS - Updated as requested */
+        .impact-number {
+            font-size: 2rem; /* Smaller than before */
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .impact-label {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* ===== COMPARISON SECTION ===== */
+        .comparison {
+            text-align: center;
+        }
+
+        .comparison-content {
+            display: flex;
+            justify-content: center;
+            gap: 100px;
+            margin-top: 60px;
+        }
+
+        .comparison-item {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .comparison-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .comparison-label {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .comparison-stat {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .comparison-before .comparison-stat {
+            color: var(--text-dim);
+        }
+
+        .comparison-after .comparison-stat {
+            background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ===== SERVICES SECTION ===== */
+        .services {
+            text-align: center;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .service-item {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .service-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-icon {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service-item h3 {
+            margin-bottom: 20px;
+        }
+
+        .service-item p {
+            color: var(--text-muted);
+        }
+
+        /* ===== RESULTS SECTION ===== */
+        .results {
+            text-align: center;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .result-item {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .result-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .result-icon {
+            font-size: 4rem;
+            margin-bottom: 25px;
+        }
+
+        .result-item:nth-child(1) .result-icon {
+            color: #5865F2;
+        }
+
+        .result-item:nth-child(2) .result-icon {
+            color: #00C853;
+        }
+
+        .result-item:nth-child(3) .result-icon {
+            color: #FF9800;
+        }
+
+        .result-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .result-stat-item {
+            text-align: center;
+        }
+
+        .result-stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .result-stat-label {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* ===== PROCESS SECTION ===== */
+        .process {
+            text-align: center;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .step-item {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .step-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0 auto 25px;
+        }
+
+        .step-item h3 {
+            margin-bottom: 15px;
+        }
+
+        .step-item p {
+            color: var(--text-muted);
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .contact-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-icon {
+            font-size: 5rem;
+            margin-bottom: 30px;
+            color: var(--primary-red);
+        }
+
+        .contact-content p {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .discord-handle {
+            margin: 40px 0;
+        }
+
+        .discord-handle h3 {
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: var(--primary-red);
+            margin-bottom: 10px;
+        }
+
+        .discord-handle p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+        }
+
+        .contact-note {
+            font-size: 1.1rem;
+            margin-top: 30px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .contact-note i {
+            color: var(--primary-red);
+            margin-right: 10px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 80px 0 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+
+        .footer-column p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-light);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+            
+            h2 {
+                font-size: 2.8rem;
+            }
+            
+            .impact-grid,
+            .services-grid,
+            .results-grid,
+            .process-steps,
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .comparison-content {
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            .hero {
+                padding: 140px 0 80px;
+            }
+            
+            .impact-grid,
+            .services-grid,
+            .results-grid,
+            .process-steps,
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .discord-handle h3 {
+                font-size: 2.2rem;
+            }
+            
+            .impact-number {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 14px 30px;
+                font-size: 1rem;
+            }
+            
+            .comparison-stat {
+                font-size: 3rem;
+            }
+            
+            .impact-number {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">XScales</a>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#results">Results</a></li>
+                    <li><a href="#process">Process</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <div class="tagline fade-in">✨ Introducing XScales</div>
+            <h1>MARKETING EXPERTS<br><span class="text-gradient">SCALABLE SALES & REAL GROWTH</span></h1>
+            <p class="hero-subtitle">Specialized marketing services for digital brands: sales strategy, community growth, web development, and brand scaling solutions.</p>
+            <a href="#contact" class="btn">Start Scaling Now →</a>
+        </div>
+    </section>
+
+    <!-- IMPACT SECTION (UPDATED) -->
+    <section class="impact-section">
+        <div class="container">
+            <h2>Our <span class="text-gradient">Impact</span></h2>
+            <p class="impact-subtitle">Just starting our journey, but already making waves with early successes.</p>
+            <div class="impact-grid">
+                <div class="impact-item delay-1">
+                    <div class="impact-number">15+</div>
+                    <div class="impact-label">Satisfied Clients</div>
+                </div>
+                <div class="impact-item delay-2">
+                    <div class="impact-number">42%</div>
+                    <div class="impact-label">Avg. Revenue Growth</div>
+                </div>
+                <div class="impact-item delay-3">
+                    <div class="impact-number">2.8x</div>
+                    <div class="impact-label">Average ROI</div>
+                </div>
+                <div class="impact-item delay-4">
+                    <div class="impact-number">100%</div>
+                    <div class="impact-label">Client Retention</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARISON SECTION -->
+    <section class="comparison">
+        <div class="container">
+            <h2>Why Top Digital Brands<br><span class="text-gradient">Trust Us</span></h2>
+            <div class="comparison-content">
+                <div class="comparison-item comparison-before delay-1">
+                    <div class="comparison-label">Without XScales</div>
+                    <div class="comparison-stat">8,450</div>
+                    <p>Monthly Revenue</p>
+                </div>
+                <div class="comparison-item comparison-after delay-2">
+                    <div class="comparison-label">With XScales</div>
+                    <div class="comparison-stat">22,180</div>
+                    <p>Monthly Revenue</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Marketing Services<br><span class="text-gradient">Built For Growth</span></h2>
+            <div class="services-grid">
+                <div class="service-item delay-1">
+                    <div class="service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Advertising Management</h3>
+                    <p>Strategic ad campaigns across Meta, Google, and other platforms to maximize ROI and brand visibility.</p>
+                </div>
+                <div class="service-item delay-2">
+                    <div class="service-icon">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <h3>Community Building</h3>
+                    <p>Grow and engage your Discord community with proven strategies that increase member retention and drive organic growth.</p>
+                </div>
+                <div class="service-item delay-3">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Custom websites and eCommerce platforms built to impress visitors and convert them into customers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESULTS SECTION -->
+    <section id="results" class="results">
+        <div class="container">
+            <h2>Our <span class="text-gradient">Results</span></h2>
+            <div class="results-grid">
+                <div class="result-item delay-1">
+                    <div class="result-icon">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <h3>Discord Community Growth</h3>
+                    <p>Strategic community management and engagement campaigns that transformed small Discord servers into thriving communities.</p>
+                    <div class="result-stats">
+                        <div class="result-stat-item">
+                            <div class="result-stat-number">+185%</div>
+                            <div class="result-stat-label">Member Growth</div>
+                        </div>
+                        <div class="result-stat-item">
+                            <div class="result-stat-number">2.1x</div>
+                            <div class="result-stat-label">Engagement</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-item delay-2">
+                    <div class="result-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Revenue Acceleration</h3>
+                    <p>Implemented targeted sales strategies and funnel optimization that significantly increased conversion rates.</p>
+                    <div class="result-stats">
+                        <div class="result-stat-item">
+                            <div class="result-stat-number">+140%</div>
+                            <div class="result-stat-label">Sales Increase</div>
+                        </div>
+                        <div class="result-stat-item">
+                            <div class="result-stat-number">42%</div>
+                            <div class="result-stat-label">More Conversions</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-item delay-3">
+                    <div class="result-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>Exceptional Returns</h3>
+                    <p>Delivered outstanding ROI through strategic investments in growth marketing and digital transformation.</p>
+                    <div class="result-stats">
+                        <div class="result-stat-item">
+                            <div class="result-stat-number">2.8x</div>
+                            <div class="result-stat-label">Average ROI</div>
+                        </div>
+                        <div class="result-stat-item">
+                            <div class="result-stat-number">100%</div>
+                            <div class="result-stat-label">Client Retention</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS SECTION -->
+    <section id="process" class="process">
+        <div class="container">
+            <h2>Our <span class="text-gradient">Process</span></h2>
+            <div class="process-steps">
+                <div class="step-item delay-1">
+                    <div class="step-number">1</div>
+                    <h3>Analyze</h3>
+                    <p>Deep dive into your business, market, and current performance to identify growth opportunities.</p>
+                </div>
+                <div class="step-item delay-2">
+                    <div class="step-number">2</div>
+                    <h3>Strategize</h3>
+                    <p>Develop customized solutions for sales scaling, visibility enhancement, and digital excellence.</p>
+                </div>
+                <div class="step-item delay-3">
+                    <div class="step-number">3</div>
+                    <h3>Implement</h3>
+                    <p>Execute proven strategies with precision, using cutting-edge tools and methodologies.</p>
+                </div>
+                <div class="step-item delay-4">
+                    <div class="step-number">4</div>
+                    <h3>Scale</h3>
+                    <p>Monitor results, optimize performance, and scale successful initiatives for continuous growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content delay-1">
+                <div class="contact-icon">
+                    <i class="fab fa-discord"></i>
+                </div>
+                <h2>Ready to <span class="text-gradient">Scale?</span></h2>
+                <p>For the fastest response and direct communication, reach out to me on Discord.</p>
+                
+                <div class="discord-handle">
+                    <h3>@6s3z</h3>
+                    <p>Discord Username</p>
+                </div>
+                
+                <p class="contact-note">
+                    <i class="fas fa-info-circle"></i>
+                    Send me a friend request or direct message on Discord to discuss how we can scale your business together.
+                </p>
+                
+                <a href="https://discord.com" target="_blank" class="btn">
+                    <i class="fab fa-discord"></i> Open Discord
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>XScales</h3>
+                    <p>Transforming businesses through strategic sales scaling, enhanced visibility, and exceptional digital experiences.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#results">Results</a></li>
+                        <li><a href="#process">Process</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fab fa-discord"></i> Discord: @6s3z</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; <span id="currentYear"></span> XScales. All rights reserved. | Designed for business growth.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Mobile menu toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navMenu = document.querySelector('nav ul');
+            
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function() {
+                    navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+                    navMenu.style.flexDirection = 'column';
+                    navMenu.style.position = 'absolute';
+                    navMenu.style.top = '70px';
+                    navMenu.style.right = '20px';
+                    navMenu.style.backgroundColor = 'rgba(20, 20, 20, 0.95)';
+                    navMenu.style.padding = '20px';
+                    navMenu.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
+                    navMenu.style.borderRadius = '10px';
+                    navMenu.style.width = '200px';
+                    navMenu.style.gap = '15px';
+                    navMenu.style.backdropFilter = 'blur(10px)';
+                });
+            }
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    if(this.getAttribute('href') === '#') return;
+                    
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if(window.innerWidth <= 768) {
+                            navMenu.style.display = 'none';
+                        }
+                    }
+                });
+            });
+            
+            // Scroll animations
+            function checkVisibility() {
+                const sections = document.querySelectorAll('section');
+                const items = document.querySelectorAll('.impact-item, .comparison-item, .service-item, .result-item, .step-item, .contact-content');
+                
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (sectionTop < windowHeight - 100) {
+                        section.classList.add('visible');
+                    }
+                });
+                
+                items.forEach(item => {
+                    const itemTop = item.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (itemTop < windowHeight - 100) {
+                        item.classList.add('visible');
+                    }
+                });
+            }
+            
+            // Initial check
+            checkVisibility();
+            
+            // Check on scroll
+            window.addEventListener('scroll', checkVisibility);
+            
+            // Check on resize
+            window.addEventListener('resize', checkVisibility);
+        });
+    </script>
+</body>
+</html>
